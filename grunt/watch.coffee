@@ -9,7 +9,7 @@ module.exports =
     files: [
       'lib/**/*.coffee'
     ]
-    tasks: ['coffee','mochaTest']
+    tasks: ['coffee','mochaTest', 'amdwrap']
 
   test:
     files: [

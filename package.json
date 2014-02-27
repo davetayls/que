@@ -30,7 +30,8 @@
     "grunt-mocha-cov": "~0.2.1",
     "chai": "~1.9.0",
     "grunt-contrib-watch": "~0.5.3",
-    "grunt-mocha-test": "~0.9.3"
+    "grunt-mocha-test": "~0.9.3",
+    "grunt-amd-wrap": "~1.0.1"
   },
   "config": {
     "blanket": {

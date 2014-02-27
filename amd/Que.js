@@ -1,4 +1,4 @@
-(function() {
+define(function (require, exports, module) {(function() {
   'use strict';
   var EventEmitter, Job, Que, STATES, exports, s4, _id,
     __hasProp = {}.hasOwnProperty,
@@ -154,3 +154,5 @@
   })(exports.Store);
 
 }).call(this);
+
+});

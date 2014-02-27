@@ -1,12 +1,18 @@
+'use strict'
 
 EventEmitter = require('events').EventEmitter
 
+
+#
+# Create a simple unique id
 s4 = ->
   Math.floor((1 + Math.random()) * 0x10000).toString(16).substring 1
 
 _id = ->
   s4() + s4() + "-" + s4() + "-" + s4() + "-" + s4() + "-" + s4() + s4() + s4()
 
+
+# The main Que class
 exports = module.exports = class Que extends EventEmitter
   constructor: (store) ->
     @state = exports.STATES.STOPPED
@@ -43,11 +49,14 @@ exports = module.exports = class Que extends EventEmitter
       @next()
 
 
-
+# Que states
 STATES = exports.STATES =
   STOPPED: 0
   RUNNING: 1
   WAITING: 2
+
+
+
 
 class Job extends EventEmitter
   constructor: (key, data) ->

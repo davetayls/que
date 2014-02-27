@@ -2,7 +2,7 @@
 
 module.exports =
   options:
-    bare: true
+    bare: false
   dist:
     files: [
       expand: true

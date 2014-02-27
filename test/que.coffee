@@ -23,10 +23,10 @@ describe 'Que', ->
 
   it 'can start running the queue', (dn) ->
     q = new Que(new Que.MemoryStore())
-    q.process 'share', (job, done) ->
+    q.process 'share', (job) ->
       expect(job.key).to.equal('share')
       expect(job.data.to).to.equal('foobar')
-      done()
+      job.complete()
       dn()
     q.create 'share',
       to: 'foobar'
@@ -43,7 +43,7 @@ describe 'Que', ->
         expect(i).equal(1)
       i++
       setTimeout =>
-        done()
+        job.complete()
         if i is 2 then dn()
       , 100
 

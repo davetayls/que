@@ -1,12 +1,12 @@
 {
   "name": "que",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "homepage": "https://github.com/davetayls/que",
   "authors": [
     "davetayls <dave@the-taylors.org>"
   ],
   "description": "Automated priority job queue management",
-  "main": "que.js",
+  "main": "dist/Que.js",
   "keywords": [
     "queue",
     "job"
@@ -17,7 +17,9 @@
     "node_modules",
     "bower_components",
     "test",
-    "tests"
+    "tests",
+    "grunt",
+    "Gruntfile"
   ],
   "dependencies": {
     "eventEmitter": "~4.2.7"

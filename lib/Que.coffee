@@ -1,6 +1,12 @@
 
 EventEmitter = require('events').EventEmitter
 
+s4 = ->
+  Math.floor((1 + Math.random()) * 0x10000).toString(16).substring 1
+
+_id = ->
+  s4() + s4() + "-" + s4() + "-" + s4() + "-" + s4() + "-" + s4() + s4() + s4()
+
 exports = module.exports = class Que extends EventEmitter
   constructor: (store) ->
     @state = exports.STATES.STOPPED
@@ -20,13 +26,12 @@ exports = module.exports = class Que extends EventEmitter
     @processes[key] = fn
 
   next: ->
-    record = @store.next()
-    if record
-      job = new Job(record.key, record.data)
+    job = @store.next()
+    if job
       process = @processes[job.key]
       if process
-        _done = => @next()
-        process.call @, job, _done
+        job.once 'complete', => @next()
+        process.call @, job
       else
         throw new Error('Que: no process added with key: ' + job.key)
     else
@@ -44,10 +49,25 @@ STATES = exports.STATES =
   RUNNING: 1
   WAITING: 2
 
-class Job
+class Job extends EventEmitter
   constructor: (key, data) ->
+    @id = _id()
     @key = key
     @data = data
+    @attempts = 0
+
+  complete: ->
+    @completed = true
+    @emit('complete')
+
+  fail: ->
+    @attempts++
+    @emit 'failed'
+
+  progress: (current, total) ->
+    percent = (100/total) * current
+    @progressed = percent
+    @emit 'progress', percent
 
 class exports.Store
   constructor: (name) ->
@@ -59,16 +79,10 @@ class exports.MemoryStore extends exports.Store
     @store = []
 
   add: (job) ->
-    @store.push
-      key: job.key
-      data: JSON.stringify(job.data)
-    job
+    @store.push job
 
-  next: ->
-    top = @store.shift()
-    if top
-      top.data = JSON.parse(top.data)
-      top
+  next: -> @store.shift()
+
 
 class exports.LocalStorageStore extends exports.Store
   save: (key, data) ->

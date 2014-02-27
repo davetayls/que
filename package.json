@@ -1,8 +1,8 @@
 {
   "name": "que",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Automated priority job queue management",
-  "main": "que.js",
+  "main": "dist/Que.js",
   "scripts": {
     "test": "grunt test"
   },

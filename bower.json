@@ -1,0 +1,25 @@
+{
+  "name": "que",
+  "version": "0.0.0",
+  "homepage": "https://github.com/davetayls/que",
+  "authors": [
+    "davetayls <dave@the-taylors.org>"
+  ],
+  "description": "Automated priority job queue management",
+  "main": "que.js",
+  "keywords": [
+    "queue",
+    "job"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "eventEmitter": "~4.2.7"
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "name": "que",
+  "version": "0.0.0",
+  "description": "Automated priority job queue management",
+  "main": "que.js",
+  "scripts": {
+    "test": "grunt test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/davetayls/que.git"
+  },
+  "keywords": [
+    "queue",
+    "job"
+  ],
+  "author": "davetayls",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/davetayls/que/issues"
+  },
+  "homepage": "https://github.com/davetayls/que"
+}
